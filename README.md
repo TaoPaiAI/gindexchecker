@@ -2,6 +2,9 @@
 
 GIndexChecker is a Python-based tool for massive analysis of domain and URL indexing in Google. It is designed for webmasters, SEOs, and anyone interested in monitoring the visibility of their own or third-party websites.
 
+## Screenshot
+
+![Interfaz principal](screenshots/screenshots.png)
 
 ## Features
 
