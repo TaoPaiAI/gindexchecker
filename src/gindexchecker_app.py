@@ -454,6 +454,17 @@ class GIndexCheckerApp:
         self.cx_guide_label.pack(padx=10, pady=10)
         self.cx_guide_label.delete("1.0", tk.END)
         self.cx_guide_label.insert(tk.END, self.translate("cx_guide"))
+        
+        self.cx_guide_label.config(state='normal')
+        anchor_text = "Google Custom Search Engine"
+        start_index = self.cx_guide_label.search(anchor_text, "1.0", tk.END)
+        if start_index:
+            end_index = f"{start_index}+{len(anchor_text)}c"
+            self.cx_guide_label.tag_add("cse_link", start_index, end_index)
+            self.cx_guide_label.tag_config("cse_link", foreground="#00FF00", underline=True)
+            self.cx_guide_label.tag_bind("cse_link", "<Enter>", lambda e: self.cx_guide_label.config(cursor="hand2"))
+            self.cx_guide_label.tag_bind("cse_link", "<Leave>", lambda e: self.cx_guide_label.config(cursor="arrow"))
+            self.cx_guide_label.tag_bind("cse_link", "<Button-1>", lambda e: webbrowser.open("https://cse.google.com/cse"))
         self.cx_guide_label.config(state='disabled')
 
         def update_ui():
@@ -463,6 +474,15 @@ class GIndexCheckerApp:
             self.cx_guide_label.config(state='normal')
             self.cx_guide_label.delete("1.0", tk.END)
             self.cx_guide_label.insert(tk.END, self.translate("cx_guide"))
+            # Reasignamos el enlace después de actualizar el texto
+            start_index = self.cx_guide_label.search(anchor_text, "1.0", tk.END)
+            if start_index:
+                end_index = f"{start_index}+{len(anchor_text)}c"
+                self.cx_guide_label.tag_add("cse_link", start_index, end_index)
+                self.cx_guide_label.tag_config("cse_link", foreground="#00FF00", underline=True)
+                self.cx_guide_label.tag_bind("cse_link", "<Enter>", lambda e: self.cx_guide_label.config(cursor="hand2"))
+                self.cx_guide_label.tag_bind("cse_link", "<Leave>", lambda e: self.cx_guide_label.config(cursor="arrow"))
+                self.cx_guide_label.tag_bind("cse_link", "<Button-1>", lambda e: webbrowser.open("https://cse.google.com/cse"))
             self.cx_guide_label.config(state='disabled')
             self.add_context_menu(self.cx_entry)
         self.cx_win.update_ui_texts = update_ui
