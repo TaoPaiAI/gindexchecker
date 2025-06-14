@@ -49,7 +49,7 @@ GIndexChecker is a Python-based tool for massive analysis of domain and URL inde
 
 2. Configure your API keys and CX in the configuration menu:
    - **API Keys:** Go to "Settings > API Keys" and follow the steps to add your Google Custom Search keys.
-   - **CX Key:** Go to "Settings > CX" and follow the steps to add your CX key.
+   - **CX Key:** Go to "Settings > CX Key" and follow the steps to add your CX key.
 
 3. Paste any list containing domains (even if it has other text) into the main input box. The program will automatically extract unique domains and discard the rest.
 
