@@ -2,8 +2,8 @@ name: Build and Package Windows EXE
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -30,13 +30,13 @@ jobs:
         run: |
           pyinstaller --name "GIndexChecker" --windowed --icon=assets/gindexchecker2.ico --add-data "assets;assets" --noupx --clean src/main.py
 
-      - name: Zip the GIndexChecker folder (not its contents)
+      - name: Zip the GIndexChecker folder
         run: |
           cd dist
           powershell Compress-Archive -Path GIndexChecker -DestinationPath ../GIndexChecker-win.zip
 
-      - name: Upload ZIP as artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload ZIP as release asset
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
         with:
-          name: GIndexChecker-win
-          path: GIndexChecker-win.zip
+          files: GIndexChecker-win.zip
