@@ -225,7 +225,7 @@ def load_config():
             config = json.load(file)
             return config
     except FileNotFoundError:
-        return {'API_KEYS': [], 'CX': '', 'language': "es"}
+        return {'API_KEYS': [], 'CX': '', 'language': "en"}
 
 def save_config(config):
     with open(CONFIG_FILE, 'w') as file:
