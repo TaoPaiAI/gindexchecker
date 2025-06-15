@@ -30,9 +30,10 @@ jobs:
         run: |
           pyinstaller --name "GIndexChecker" --windowed --icon=assets/gindexchecker2.ico --add-data "assets;assets" --noupx --clean src/main.py
 
-      - name: Zip only the GIndexChecker folder (not the dist folder)
+      - name: Zip the GIndexChecker folder (not its contents)
         run: |
-          powershell Compress-Archive -Path dist\GIndexChecker -DestinationPath GIndexChecker-win.zip
+          cd dist
+          powershell Compress-Archive -Path GIndexChecker -DestinationPath ../GIndexChecker-win.zip
 
       - name: Upload ZIP as artifact
         uses: actions/upload-artifact@v4
